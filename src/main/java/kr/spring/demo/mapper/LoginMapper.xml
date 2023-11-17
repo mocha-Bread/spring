@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.demo.mapper.LoginMapper">
+
+	<!-- 회원가입 -->
+	<insert id="registerUser" parameterType="kr.spring.demo.entity.Login">
+		INSERT INTO tb_user(user_id, user_password, medical_number, user_name) 
+		VALUES (#{user_id}, #{user_password},  #{medical_number}, #{user_name})
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="getLoginInfo" resultType="kr.spring.demo.entity.Login">
+        SELECT * FROM tb_user
+        WHERE user_id = #{user_id}
+        AND user_password = #{user_password}
+    </select>
+    
+    <select id="getUserDetails" resultType="kr.spring.demo.entity.Login" parameterType="kr.spring.demo.entity.Login">
+    	 SELECT
+            user_id,
+            user_name,
+            medical_number
+        FROM
+            tb_user
+        WHERE
+            user_id = #{user_id}
+    </select>
+    	
+    
+    
+    
+
+</mapper>
